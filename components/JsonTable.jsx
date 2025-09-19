@@ -29,8 +29,7 @@ export default function JsonTable({ data: initialData = null, url = null, column
     return () => { mounted = false; };
   }, [url, initialData]);
 
-  // Si no especifican columnas intentamos inferirlas del primer objeto
-  const inferredColumns = React.useMemo(() => {
+    const inferredColumns = React.useMemo(() => {
     if (columns && columns.length) return columns;
     if (!data || !data.length) return [];
     const keys = Object.keys(data[0]);
@@ -39,9 +38,9 @@ export default function JsonTable({ data: initialData = null, url = null, column
 
   return (
     <div className="principal">
-      <h2 className="titulo">Tabla desde JSON</h2>
+      <h2 className="titulo">Tabla con Json</h2>
 
-      {/* Estado: error */}
+      {/*error */}
       {error && (
         <div className="p-3 mb-4 bg-red-50 border border-red-200 text-red-700 rounded">Error: {error}</div>
       )}
@@ -62,7 +61,7 @@ export default function JsonTable({ data: initialData = null, url = null, column
           </thead>
 
           <tbody className="bg-white divide-y divide-gray-100">
-            {/* Loading placeholder: mostramos 6 filas esqueléticas */}
+            
             {loading && (
               Array.from({ length: 6 }).map((_, i) => (
                 <tr key={`skeleton-${i}`} className="animate-pulse">
@@ -76,7 +75,7 @@ export default function JsonTable({ data: initialData = null, url = null, column
             )}
 
             
-            {/* Filas reales */}
+            {/*filas */}
             {!loading && data && data.map((row, rIdx) => (
               <tr key={rIdx} className="odd:bg-white even:bg-gray-50 hover:bg-gray-50">
                 {inferredColumns.map(col => (
